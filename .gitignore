@@ -1,0 +1,8 @@
+# 원본 사진은 용량이 커서 제외한다 (assets/web/ 의 리사이즈본만 추적)
+assets/*.jpg
+assets/*.jpeg
+assets/*.png
+shots/
+game.html
+.playwright-mcp/
+.DS_Store
