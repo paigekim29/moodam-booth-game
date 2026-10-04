@@ -321,9 +321,9 @@ const CFG = {
   WINNERS: 3,
   MAX_PLAYS: 1,           // 한 사람이 하루에 할 수 있는 판수
   CONSENT: 'v1',
-  // 개인정보 동의 체크박스를 미리 켜 둘지. true 로 바꾸면 기본 체크 상태로 시작한다.
-  // 국내 개인정보보호법상 사전 체크된 동의는 유효한 동의로 인정받기 어렵다.
-  CONSENT_PRECHECKED: false
+  // 개인정보 동의 체크박스를 미리 켜 둘지. false 로 바꾸면 빈 상태로 시작한다.
+  // 참고: 국내 개인정보보호법상 사전 체크된 동의는 유효성 논란이 있다.
+  CONSENT_PRECHECKED: true
 };
 // 오차(0~180°)를 라운드 점수로 바꾼다. 절대 음수가 나오지 않는다.
 const roundScore = err => CFG.PER_ROUND * (1 - err/180);
@@ -630,6 +630,7 @@ document.addEventListener('click', keepAwake, {once:true});
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden){ wake=null; keepAwake(); } });
 
 /* ═══════════ 시작 ═══════════ */
+$('f-consent').checked = CFG.CONSENT_PRECHECKED;
 drawBoard();
 ambient();
 </script>
