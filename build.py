@@ -10,6 +10,7 @@ IMAGES = {
     "__IMG_ATTRACT__": ("assets/web/attract.jpg", "jpeg"),
     "__IMG_PRIZE__": ("assets/web/prize.jpg", "jpeg"),
     "__IMG_UNIT__": ("assets/web/unit.png", "png"),
+    "__IMG_LOGO__": ("assets/web/logo.png", "png"),
 }
 
 html = (ROOT / "src/index.html").read_text(encoding="utf-8")
