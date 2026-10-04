@@ -316,9 +316,8 @@ h1{
 const CFG = {
   ROUNDS: 2,
   SPEED: [120, 180],      // 라운드별 색이 도는 속도 (도/초)
-  PERFECT: 3,             // 이 각도 안이면 '딱!'
-  BONUS: 10,
-  PER_ROUND: 100,         // 라운드 만점. 오차 180°면 0점, 0°면 만점
+  PERFECT: 3,             // 이 각도 안이면 '딱!' 연출 (점수 가산은 없다)
+  PER_ROUND: 50,          // 라운드 만점. 2라운드 합쳐 100점 만점이 된다
   WINNERS: 3,
   MAX_PLAYS: 1,           // 한 사람이 하루에 할 수 있는 판수
   CONSENT: 'v1',
@@ -395,7 +394,7 @@ function drawBoard(){
 }
 
 /* ═══════════ 게임 ═══════════ */
-let player=null, round=0, errs=[], bonus=0;
+let player=null, round=0, errs=[];
 let hue=0, target=0, spinning=false, lastTs=0, raf=0;
 
 const dist = (a,b) => { const d=Math.abs(a-b)%360; return d>180?360-d:d; };
@@ -431,7 +430,6 @@ function stopRound(){
 
   const v = document.getElementById('verdict');
   if(err <= CFG.PERFECT){
-    bonus += CFG.BONUS;
     v.textContent='딱!'; v.className='verdict perfect';
     const f=document.getElementById('flash');
     f.classList.remove('fire'); void f.offsetWidth; f.classList.add('fire');
@@ -448,7 +446,7 @@ function stopRound(){
 }
 
 function finish(){
-  const raw = errs.reduce((a,e)=>a+roundScore(e), 0) + bonus;
+  const raw = errs.reduce((a,e)=>a+roundScore(e), 0);
   const score = Math.round(raw*10)/10;
 
   const rows = load();
@@ -488,7 +486,7 @@ const playsOf = phone => load().filter(r=>r.d===today() && r.phone===phone).leng
 
 function beginPlay(){
   clearTimeout(resultTimer);
-  round=0; errs=[]; bonus=0;
+  round=0; errs=[];
   show('play'); startRound();
 }
 
