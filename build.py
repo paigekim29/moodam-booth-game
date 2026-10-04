@@ -3,7 +3,8 @@
 import base64, pathlib
 
 ROOT = pathlib.Path(__file__).parent
-OUT = ROOT / "무담게임.html"
+# 부스에서 더블클릭할 파일과, 웹 호스팅용 index.html 을 같이 만든다
+OUTPUTS = [ROOT / "무담게임.html", ROOT / "index.html"]
 
 IMAGES = {
     "__IMG_ATTRACT__": ("assets/web/attract.jpg", "jpeg"),
@@ -20,5 +21,6 @@ for token, (path, kind) in IMAGES.items():
 if "__IMG_" in html:
     raise SystemExit("치환되지 않은 이미지 플레이스홀더가 남아 있습니다")
 
-OUT.write_text(html, encoding="utf-8")
-print(f"완성: {OUT.name}  ({OUT.stat().st_size/1024:.0f} KB)")
+for out in OUTPUTS:
+    out.write_text(html, encoding="utf-8")
+    print(f"완성: {out.name}  ({out.stat().st_size/1024:.0f} KB)")
