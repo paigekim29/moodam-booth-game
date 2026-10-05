@@ -8,7 +8,8 @@ OUTPUTS = [ROOT / "무담게임.html", ROOT / "index.html"]
 
 IMAGES = {
     "__IMG_ATTRACT__": ("assets/web/attract.jpg", "jpeg"),
-    "__IMG_PRIZE__": ("assets/web/prize.jpg", "jpeg"),
+    "__IMG_PRIZE__": ("assets/web/prize.png", "png"),
+    "__IMG_PRIZE1__": ("assets/web/prize1.png", "png"),
     "__IMG_UNIT__": ("assets/web/unit.png", "png"),
     "__IMG_LOGO__": ("assets/web/logo.png", "png"),
 }
